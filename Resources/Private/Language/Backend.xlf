@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1524305103" source-language="en" datatype="plaintext" original="messages" date="2018-04-21T20:22:34Z" product-name="syzygy_qrpreview">
+		<header/>
+		<body>
+
+			<trans-unit id="domain_exception_message">
+				<source>No domain entry was found. Please add some or provide TCEMAIN.previewDomain to generate a proper URI.</source>
+			</trans-unit>
+			<trans-unit id="no_page_selected">
+				<source>Please select a page first</source>
+			</trans-unit>
+			<trans-unit id="title">
+				<source>Preview URI as QR code</source>
+			</trans-unit>
+			<trans-unit id="instruction.title">
+				<source>Instruction</source>
+			</trans-unit>
+			<trans-unit id="instruction.step1">
+				<source>open a QR code scanner app on your desired device</source>
+			</trans-unit>
+			<trans-unit id="instruction.step2">
+				<source>scan the code</source>
+			</trans-unit>
+			<trans-unit id="instruction.step3">
+				<source>the URI for the selected page should be read and opened in a browser</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

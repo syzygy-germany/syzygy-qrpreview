@@ -1,0 +1,28 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+    <f:if condition="{errorMessage}">
+        <f:then>
+            <div class="row">
+                <div class="t3js-message typo3-message alert alert-danger" role="alert">
+                    <p class="messageText text-center">{errorMessage}</p>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="row">
+                <div class="col-xs-6">
+                    <img width="100%" name="QR Code for preview of page" src="data:image/png;base64, {qrCode}" />
+                </div>
+                <div class="col-xs-6">
+                    <h3><f:translate key="LLL:EXT:syzygy_qrpreview/Resources/Private/Language/Backend.xlf:instruction.title" /></h3>
+                    <ul>
+                        <li><f:translate key="LLL:EXT:syzygy_qrpreview/Resources/Private/Language/Backend.xlf:instruction.step1" /></li>
+                        <li><f:translate key="LLL:EXT:syzygy_qrpreview/Resources/Private/Language/Backend.xlf:instruction.step2" /></li>
+                        <li><f:translate key="LLL:EXT:syzygy_qrpreview/Resources/Private/Language/Backend.xlf:instruction.step3" /></li>
+                    </ul>
+                </div>
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
