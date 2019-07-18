@@ -23,6 +23,8 @@ composer require syzygy-typo3/syzygy-qrpreview
 
 ## Contribution
 
+Instruction for a local working environment:
+
 - run `composer install`
 - configure webserver root to `.Build/public`
 - go through the installation of TYPO3
