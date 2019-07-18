@@ -1,38 +1,73 @@
 {
-	"name": "syzygy-typo3/syzygy-qrpreview",
-	"type": "typo3-cms-extension",
-	"description": "Opens a dialog with a QR code which includes the preview URI.",
-	"homepage": "https://www.syzygy.de",
-	"license": ["GPL-2.0+"],
-	"authors": [
-		{
-			"name": "SYZYGY TYPO3 Development Team",
-			"email": "typo3-team@syzygy.de",
-			"role": "Developer",
-			"homepage": "https://www.syzygy.de"
-		}
-	],
-	"require": {
-		"php": ">=7.0 <7.3",
-		"typo3/cms-core": "^8.7.0 || ^9.0",
-		"endroid/qr-code": "^3.2"
-	},
-	"replace": {
-		"syzygy_qrpreview": "*"
-	},
-	"autoload": {
-		"psr-4": {
-			"SyzygyTypo3\\SyzygyQrpreview\\": "Classes/"
-		}
-	},
-	"config": {
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin"
-	},
-	"extra": {
-		"typo3/cms": {
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/Web"
-		}
-	}
+  "name": "syzygy-typo3/syzygy-qrpreview",
+  "type": "typo3-cms-extension",
+  "description": "Opens a dialog with a QR code which includes the preview URI.",
+  "homepage": "https://www.syzygy.de",
+  "license": [
+    "GPL-2.0+"
+  ],
+  "authors": [
+    {
+      "name": "SYZYGY TYPO3 Development Team",
+      "email": "typo3-team@syzygy.de",
+      "role": "Developer",
+      "homepage": "https://www.syzygy.de"
+    }
+  ],
+  "require": {
+    "roave/security-advisories": "dev-master",
+    "php": ">=7.0 <7.3",
+    "typo3/cms-core": "^8.7 || ^9.0",
+    "typo3/cms-viewpage": "^8.7 || ^9.0",
+    "endroid/qr-code": "^3.2"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "typo3/cms-introduction": "^3.0 || ^4.0",
+    "typo3/minimal": "^8.7 || ^9.5",
+    "squizlabs/php_codesniffer": "^2.8",
+    "nimut/testing-framework": "2.x-dev || 3.x-dev || 4.x-dev"
+  },
+  "replace": {
+    "syzygy_qrpreview": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SyzygyTypo3\\SyzygyQrpreview\\": "Classes/"
+    }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/public"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/public/typo3conf/ext/",
+      "[ -L .Build/public/typo3conf/ext/syzygy_qrpreview ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/syzygy_qrpreview"
+    ],
+    "install-extension-fallback": [
+      "mkdir -p Resources/Private/Composer",
+      "if [ -f Resources/Private/Composer/composer.json ]; then cd Resources/Private/Composer/ && composer update; fi",
+      "if [ ! -f Resources/Private/Composer/composer.json ]; then cd Resources/Private/Composer/ && composer require endroid/qr-code=^3.2 && composer config classmap-authoritative true && composer config prepend-autoloader true && composer dump-autoload -a; fi"
+    ],
+    "extension-cleanup-for-release": [
+      "@install-extension-fallback",
+      "rm -rf Tests/",
+      "rm -f .gitattributes",
+      "rm -f .gitignore",
+      "rm -f .travis.yml",
+      "rm -f composer.lock"
+    ],
+    "install-needed-extensions": [
+      ".Build/bin/typo3 extensionmanager:extension:install --extension-key=bootstrap_package",
+      ".Build/bin/typo3 extensionmanager:extension:install --extension-key=introduction",
+      ".Build/bin/typo3 extensionmanager:extension:install --extension-key=syzygy_qrpreview"
+    ]
+  }
 }

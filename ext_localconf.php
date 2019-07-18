@@ -9,6 +9,16 @@ defined('TYPO3_MODE') or die();
  */
 
 (function ($extKey) {
+    // Validate if we have the class available via autoload
+    // if not, this is the TER version and we need to add our own autoload
+    if (class_exists('Endroid\QrCode\QrCode') === false) {
+        /** @noinspection PhpIncludeInspection */
+        include \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(
+            $extKey,
+            'Resources/Private/Composer/vendor/autoload.php'
+        );
+    }
+
     $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
     $iconRegistry->registerIcon(
         'syzygy-qr-preview',

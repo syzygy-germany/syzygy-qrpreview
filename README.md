@@ -20,3 +20,12 @@ composer require syzygy-typo3/syzygy-qrpreview
 - Open an QR code scanner app on your mobile device and scan the code
 - The site to preview should be opened in a browser 
 - Have fun!
+
+## Contribution
+
+- run `composer install`
+- configure webserver root to `.Build/public`
+- go through the installation of TYPO3
+- run `composer install-needed-extensions`
+
+Notice: Make sure to load the backend without browser cache as it might cache the ajax routes needed by this extension
