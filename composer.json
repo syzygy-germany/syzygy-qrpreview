@@ -16,7 +16,7 @@
   ],
   "require": {
     "roave/security-advisories": "dev-master",
-    "php": ">=7.0 <7.3",
+    "php": ">=7.1 <7.3",
     "typo3/cms-core": "^8.7 || ^9.0",
     "typo3/cms-viewpage": "^8.7 || ^9.0",
     "endroid/qr-code": "^3.2"
